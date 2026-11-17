@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "Sarkari Update Hub",
+  "short_name": "Sarkari Hub",
+  "description": "सरकारी नौकरी, योजनाएँ, स्कॉलरशिप और अप्रेंटिसशिप अपडेट हिंदी में।",
+  "lang": "hi-IN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f8fb",
+  "theme_color": "#102a43",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
