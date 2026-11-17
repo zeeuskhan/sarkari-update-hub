@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://govtjobsaply.vercel.app/sitemap.xml
-Sitemap: https://govtjobsaply.vercel.app/rss.xml
