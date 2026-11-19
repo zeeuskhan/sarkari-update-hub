@@ -27,11 +27,11 @@ for (const post of posts) {
 const updateDir = "public/updates";
 try {
  const updateFiles = await readdir(updateDir);
- for (const file of updateFiles.filter(name => /^daily-govt-jobs-schemes-\\d{4}-\\d{2}-\\d{2}\\.html$/.test(name)).sort()) {
+ for (const file of updateFiles.filter(name => /^daily-govt-jobs-schemes-\d{4}-\d{2}-\d{2}\.html$/.test(name)).sort()) {
   urls.push(base + "/updates/" + file);
  }
 } catch {}
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u,i)=>{const slug=u.includes("/news/")?u.split("/news/")[1].replace(".html",""):"";const post=posts.find(p=>(p.id||p.slug)===slug);const updateDate=u.match(/daily-govt-jobs-schemes-(\\d{4}-\\d{2}-\\d{2})\\.html$/)?.[1];const isUpdate=u.includes("/updates/");const lastmod=post?.updated||post?.date||updateDate||"2026-11-10";return `<url><loc>${u}</loc><lastmod>${lastmod}</lastmod><changefreq>${i===0||isUpdate?"daily":"weekly"}</changefreq><priority>${i===0?"1.0":isUpdate?"0.9":"0.7"}</priority></url>`}).join("\n")}\n</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u,i)=>{const slug=u.includes("/news/")?u.split("/news/")[1].replace(".html",""):"";const post=posts.find(p=>(p.id||p.slug)===slug);const updateDate=u.match(/daily-govt-jobs-schemes-(\d{4}-\d{2}-\d{2})\.html$/)?.[1];const isUpdate=u.includes("/updates/");const lastmod=post?.updated||post?.date||updateDate||"2026-11-10";return `<url><loc>${u}</loc><lastmod>${lastmod}</lastmod><changefreq>${i===0||isUpdate?"daily":"weekly"}</changefreq><priority>${i===0?"1.0":isUpdate?"0.9":"0.7"}</priority></url>`}).join("\n")}\n</urlset>\n`;
 await writeFile("public/sitemap.xml",sitemap);
 const xmlEsc = value => String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&apos;"}[c]));
 const feedPosts=[...posts].sort((a,b)=>String(b.updated||b.date||"").localeCompare(String(a.updated||a.date||""))).slice(0,50);
